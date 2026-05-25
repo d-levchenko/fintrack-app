@@ -1,6 +1,6 @@
 'use client';
 
-import getTransactions from '@/types/transaction';
+import getTransactions from '@/services/transactionService';
 
 const Home = () => {
   const handleClick = async () => {
