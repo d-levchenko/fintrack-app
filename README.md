@@ -42,7 +42,6 @@ dashboard.
 | Language         | TypeScript                        |
 | Styling          | Tailwind CSS                      |
 | Auth             | NextAuth.js                       |
-| ORM              | Prisma                            |
 | Database         | PostgreSQL                        |
 | Charts           | Recharts                          |
 | Package Manager  | Yarn                              |
@@ -105,9 +104,6 @@ Feature-based structure with clear separation of concerns.
   transaction.ts
   user.ts
   category.ts
-
-/prisma
-  schema.prisma
 ```
 
 ---
@@ -176,9 +172,8 @@ UI action (e.g. add transaction)
   → Custom hook (useTransactions)
     → Service layer (transactionService.ts)
       → Next.js API route (/api/transactions)
-        → Prisma ORM
-          → PostgreSQL
-            → State update / revalidation → UI refresh
+        → PostgreSQL
+          → State update / revalidation → UI refresh
 ```
 
 ---
@@ -211,7 +206,7 @@ The `docker-compose.yml` spins up:
 - [✔️] Initialize Next.js 14 project with Yarn
 - [✔️] Configure TypeScript and Tailwind CSS
 - [✔️] Set up Docker + Docker Compose
-- [✔️] Configure Prisma + PostgreSQL
+- [✔️] Configure PostgreSQL
 - [✔️] Initialize Git repository
 
 ### Phase 2 — Authentication
