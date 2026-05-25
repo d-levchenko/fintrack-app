@@ -1,26 +1,33 @@
 # 💰 Personal Finance Dashboard
 
-A full-stack personal finance tracking application built with **Next.js 14**, **TypeScript**, and **Docker**. Users can track income and expenses, manage budgets by category, and visualize financial data through an analytics dashboard.
+A full-stack personal finance tracking application built with **Next.js 14**,
+**TypeScript**, and **Docker**. Users can track income and expenses, manage
+budgets by category, and visualize financial data through an analytics
+dashboard.
 
 ---
 
 ## 🚀 Features
 
 **Transactions**
+
 - Add, edit, and delete income/expense transactions
 - Categorize transactions with custom categories
 - Filter by date, category, and transaction type
 
 **Budget Tracking**
+
 - Set monthly spending limits per category
 - Track budget usage in real time
 
 **Analytics Dashboard**
+
 - Income vs. expenses overview
 - Category breakdown charts
 - Monthly spending trends
 
 **UX**
+
 - Responsive layout (mobile / tablet / desktop)
 - Protected routes with session-based auth
 - Loading and error states throughout
@@ -29,19 +36,19 @@ A full-stack personal finance tracking application built with **Next.js 14**, **
 
 ## 🧱 Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS |
-| Auth | NextAuth.js |
-| ORM | Prisma |
-| Database | PostgreSQL |
-| Charts | Recharts |
-| Package Manager | Yarn |
-| Containerization | Docker + Docker Compose |
-| Database | PostgreSQL |
-| Deployment | Vercel (frontend) + Supabase (DB) |
+| Layer            | Technology                        |
+| ---------------- | --------------------------------- |
+| Framework        | Next.js 14 (App Router)           |
+| Language         | TypeScript                        |
+| Styling          | Tailwind CSS                      |
+| Auth             | NextAuth.js                       |
+| ORM              | Prisma                            |
+| Database         | PostgreSQL                        |
+| Charts           | Recharts                          |
+| Package Manager  | Yarn                              |
+| Containerization | Docker + Docker Compose           |
+| Database         | PostgreSQL                        |
+| Deployment       | Vercel (frontend) + Supabase (DB) |
 
 ---
 
@@ -101,10 +108,6 @@ Feature-based structure with clear separation of concerns.
 
 /prisma
   schema.prisma
-
-/docker
-  Dockerfile
-  docker-compose.yml
 ```
 
 ---
@@ -185,22 +188,26 @@ UI action (e.g. add transaction)
 Docker is a first-class concern in this project — not an afterthought.
 
 **Development with Docker Compose:**
+
 ```bash
 docker compose up --build
 ```
 
 The `docker-compose.yml` spins up:
+
 - `app` — Next.js dev server
 - `db` — PostgreSQL instance
 - `adminer` (optional) — database UI for local inspection
 
-**Environment variables** are loaded from `.env.local` (never committed). See `.env.example` for required keys.
+**Environment variables** are loaded from `.env.local` (never committed). See
+`.env.example` for required keys.
 
 ---
 
 ## 🧭 Development Roadmap
 
 ### Phase 1 — Setup
+
 - [ ] Initialize Next.js 14 project with Yarn
 - [ ] Configure TypeScript and Tailwind CSS
 - [ ] Set up Docker + Docker Compose
@@ -208,34 +215,40 @@ The `docker-compose.yml` spins up:
 - [ ] Initialize Git repository
 
 ### Phase 2 — Authentication
+
 - [ ] Integrate NextAuth.js
 - [ ] Build login and register pages
 - [ ] Add middleware for route protection
 - [ ] Persist and validate user session
 
 ### Phase 3 — Core Features
+
 - [ ] Transaction CRUD (API routes + UI)
 - [ ] Category management
 - [ ] Budget system with per-category limits
 
 ### Phase 4 — Dashboard & Analytics
+
 - [ ] Dashboard overview layout
 - [ ] Income vs. expenses chart (Recharts)
 - [ ] Category breakdown chart
 - [ ] Monthly trend chart
 
 ### Phase 5 — UI/UX Polish
+
 - [ ] Responsive layout (mobile / tablet / desktop)
 - [ ] Loading and error states
 - [ ] Empty states
 - [ ] Accessibility pass
 
 ### Phase 6 — Optimization
+
 - [ ] API caching and revalidation
 - [ ] Code splitting
 - [ ] Service and hook refactoring
 
 ### Phase 7 — Deployment
+
 - [ ] Deploy frontend to Vercel
 - [ ] Deploy database to Supabase
 - [ ] Configure environment variables
