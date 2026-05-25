@@ -5,3 +5,9 @@ export type Transaction = {
   description: string | null;
   created_at: string;
 };
+
+export type CreateTransactionInput = {
+  amount: number;
+  type: 'income' | 'expense';
+  description: string;
+};
