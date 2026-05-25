@@ -208,11 +208,11 @@ The `docker-compose.yml` spins up:
 
 ### Phase 1 — Setup
 
-- [ ] Initialize Next.js 14 project with Yarn
-- [ ] Configure TypeScript and Tailwind CSS
-- [ ] Set up Docker + Docker Compose
-- [ ] Configure Prisma + PostgreSQL
-- [ ] Initialize Git repository
+- [✔️] Initialize Next.js 14 project with Yarn
+- [✔️] Configure TypeScript and Tailwind CSS
+- [✔️] Set up Docker + Docker Compose
+- [✔️] Configure Prisma + PostgreSQL
+- [✔️] Initialize Git repository
 
 ### Phase 2 — Authentication
 
