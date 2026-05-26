@@ -211,10 +211,13 @@ The `docker-compose.yml` spins up:
 
 ### Phase 2 — Authentication
 
-- [ ] Integrate NextAuth.js
+- [ ] Integrate Supabase Auth
 - [ ] Build login and register pages
+- [ ] Configure OAuth providers (Google/GitHub/etc.)
 - [ ] Add middleware for route protection
 - [ ] Persist and validate user session
+- [ ] Connect transactions.user_id
+- [ ] Configure RLS policies
 
 ### Phase 3 — Core Features
 
