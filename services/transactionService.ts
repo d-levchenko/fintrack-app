@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase/supabase';
+import supabase from '@/lib/supabase/supabase';
 import type { CreateTransactionInput, Transaction } from '@/types/transaction';
 
 const getTransactions = async (): Promise<Transaction[]> => {
@@ -7,20 +7,14 @@ const getTransactions = async (): Promise<Transaction[]> => {
   return data ?? [];
 };
 
-const createTransaction = async (transaction: CreateTransactionInput) => {
-  const { data, error } = await supabase
+const createTransaction = async (
+  transaction: CreateTransactionInput,
+): Promise<Transaction> => {
+  const { data } = await supabase
     .from('transactions')
-    .insert({
-      amount: transaction.amount,
-      type: transaction.type,
-      description: transaction.description,
-    })
-    .select();
-
-  if (error) {
-    console.error(error);
-    return;
-  }
+    .insert(transaction)
+    .select()
+    .single();
 
   return data;
 };
