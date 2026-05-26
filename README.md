@@ -118,18 +118,18 @@ UI Component
 
 ### Phase 1 — Setup
 
-- [:heacy_check_mark:] Initialize Next.js 14 project
-- [:heacy_check_mark:] Configure TypeScript and Tailwind
-- [:heacy_check_mark:] Setup Supabase project
-- [:heacy_check_mark:] Configure Docker (optional local DB)
+- [✔️] Initialize Next.js 14 project
+- [✔️] Configure TypeScript and Tailwind
+- [✔️] Setup Supabase project
+- [✔️] Configure Docker (optional local DB)
 
 ### Phase 2 — Authentication
 
-- [:heavy_check_mark:] Supabase Auth integration
-- [:heavy_check_mark:] Login & register pages
-- [:heavy_check_mark:] Protected routes (layout-based)
-- [:heavy_check_mark:] Session handling
-- [:heavy_check_mark:] RLS policies
+- [✔️] Supabase Auth integration
+- [✔️] Login & register pages
+- [✔️] Protected routes (layout-based)
+- [✔️] Session handling
+- [✔️] RLS policies
 
 ### Phase 3 — Core Features
 
