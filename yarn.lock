@@ -801,6 +801,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@supabase/ssr@npm:^0.10.3":
+  version: 0.10.3
+  resolution: "@supabase/ssr@npm:0.10.3"
+  dependencies:
+    cookie: "npm:^1.0.2"
+  peerDependencies:
+    "@supabase/supabase-js": ^2.105.3
+  checksum: 10c0/c143197c4dc6d90b917ac992a9e1bc077e586a4cd78c2da9b31c390a760bed2bc224a8ea2852aaf234a104c86c6839e2e4dc0c47f6d274d933e91d9455b48def
+  languageName: node
+  linkType: hard
+
 "@supabase/storage-js@npm:2.106.1":
   version: 2.106.1
   resolution: "@supabase/storage-js@npm:2.106.1"
@@ -1552,6 +1563,13 @@ __metadata:
   version: 2.0.0
   resolution: "convert-source-map@npm:2.0.0"
   checksum: 10c0/8f2f7a27a1a011cc6cc88cc4da2d7d0cfa5ee0369508baae3d98c260bb3ac520691464e5bbe4ae7cdf09860c1d69ecc6f70c63c6e7c7f7e3f18ec08484dc7d9b
+  languageName: node
+  linkType: hard
+
+"cookie@npm:^1.0.2":
+  version: 1.1.1
+  resolution: "cookie@npm:1.1.1"
+  checksum: 10c0/79c4ddc0fcad9c4f045f826f42edf54bcc921a29586a4558b0898277fa89fb47be95bc384c2253f493af7b29500c830da28341274527328f18eba9f58afa112c
   languageName: node
   linkType: hard
 
@@ -3263,6 +3281,7 @@ __metadata:
   resolution: "personal-finance-dashboard@workspace:."
   dependencies:
     "@prisma/client": "npm:^7.8.0"
+    "@supabase/ssr": "npm:^0.10.3"
     "@supabase/supabase-js": "npm:^2.106.1"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
@@ -3273,6 +3292,7 @@ __metadata:
     next: "npm:^16.2.6"
     react: "npm:19.2.4"
     react-dom: "npm:19.2.4"
+    react-toast: "npm:^1.0.3"
     typescript: "npm:^5"
   languageName: unknown
   linkType: soft
@@ -3363,6 +3383,15 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
+  languageName: node
+  linkType: hard
+
+"react-toast@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "react-toast@npm:1.0.3"
+  peerDependencies:
+    react: ">=16"
+  checksum: 10c0/2ebd0d78557544977ada415a9118b8c25c190dd5f6668038321e1480ee283520814e8985fd27aea485ae41a6a34e5b4427ff7f0c1dea30d0a1c24b80162621f0
   languageName: node
   linkType: hard
 

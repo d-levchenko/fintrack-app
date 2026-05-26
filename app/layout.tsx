@@ -1,4 +1,8 @@
-const RootLayout = ({ children }) => {
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html>
       <head />
