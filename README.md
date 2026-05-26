@@ -1,201 +1,116 @@
 # 💰 Personal Finance Dashboard
 
 A full-stack personal finance tracking application built with **Next.js 14**,
-**TypeScript**, and **Docker**. Users can track income and expenses, manage
-budgets by category, and visualize financial data through an analytics
-dashboard.
+**TypeScript**, and **Supabase**. Users can track income and expenses, manage
+categories, and visualize financial data through an analytics dashboard.
 
 ---
 
 ## 🚀 Features
 
-**Transactions**
+### 📊 Transactions
 
 - Add, edit, and delete income/expense transactions
-- Categorize transactions with custom categories
-- Filter by date, category, and transaction type
+- Assign categories to transactions
+- Filter by date, category, and type
 
-**Budget Tracking**
+### 🏷️ Categories
 
-- Set monthly spending limits per category
-- Track budget usage in real time
+- Create custom categories (Food, Salary, Rent, etc.)
+- Color-coded classification system
 
-**Analytics Dashboard**
+### 💰 Budget Tracking _(planned)_
+
+- Monthly spending limits per category
+- Budget usage tracking
+
+### 📈 Analytics Dashboard
 
 - Income vs. expenses overview
 - Category breakdown charts
 - Monthly spending trends
 
-**UX**
+### 🔐 Authentication
 
-- Responsive layout (mobile / tablet / desktop)
-- Protected routes with session-based auth
-- Loading and error states throughout
+- Supabase Auth (email/password)
+- Session-based protected routes
+- Secure per-user data access (RLS)
 
 ---
 
 ## 🧱 Tech Stack
 
-| Layer            | Technology                        |
-| ---------------- | --------------------------------- |
-| Framework        | Next.js 14 (App Router)           |
-| Language         | TypeScript                        |
-| Styling          | Tailwind CSS                      |
-| Auth             | NextAuth.js                       |
-| Database         | PostgreSQL                        |
-| Charts           | Recharts                          |
-| Package Manager  | Yarn                              |
-| Containerization | Docker + Docker Compose           |
-| Database         | PostgreSQL                        |
-| Deployment       | Vercel (frontend) + Supabase (DB) |
+| Layer           | Technology                |
+| --------------- | ------------------------- |
+| Framework       | Next.js 14 (App Router)   |
+| Language        | TypeScript                |
+| Styling         | Tailwind CSS              |
+| Backend         | Supabase                  |
+| Database        | PostgreSQL (via Supabase) |
+| Charts          | Recharts                  |
+| Package Manager | Yarn                      |
+| Deployment      | Vercel                    |
 
 ---
 
 ## 🏗️ Project Architecture
 
-Feature-based structure with clear separation of concerns.
-
 ```
 /app
-  /                         # Public routes
-    page.tsx                # Landing page
-    /login
-    /register
+  /page.tsx
+  /layout.tsx
 
-  /dashboard                # Protected routes
-    layout.tsx              # Auth layout wrapper
-    page.tsx                # Dashboard overview
+  /(public)
+    /sign-in
+    /sign-up
 
+  /(protected)
+    layout.tsx
+    /dashboard
     /transactions
-      page.tsx
-      /[id]/page.tsx
-
     /categories
-      page.tsx
-      /[id]/page.tsx
-
     /budget
-      page.tsx
-
     /analytics
-      page.tsx
 
 /components
-  /ui                       # Buttons, inputs, cards
-  /charts                   # Recharts wrappers
-  /layout                   # Navbar, Sidebar
+  /ui
+  /charts
+  /layout
 
 /lib
-  /api                      # Axios/fetch clients
-  /auth                     # NextAuth helpers
-  /utils                    # Date, currency formatting
+  /supabase
 
 /services
   transactionService.ts
   categoryService.ts
-  authService.ts
-
-/hooks
-  useTransactions.ts
-  useAuth.ts
-  useBudget.ts
 
 /types
   transaction.ts
-  user.ts
   category.ts
+  user.ts
 ```
-
----
-
-## 🗄️ Database Schema
-
-```prisma
-model User {
-  id           String        @id @default(auto())
-  email        String        @unique
-  passwordHash String
-  createdAt    DateTime      @default(now())
-  transactions Transaction[]
-  categories   Category[]
-  budgets      Budget[]
-}
-
-model Transaction {
-  id          String   @id @default(auto())
-  userId      String
-  amount      Float
-  type        String   // "income" | "expense"
-  categoryId  String
-  description String?
-  date        DateTime
-  user        User     @relation(fields: [userId], references: [id])
-  category    Category @relation(fields: [categoryId], references: [id])
-}
-
-model Category {
-  id           String        @id @default(auto())
-  userId       String
-  name         String
-  color        String
-  user         User          @relation(fields: [userId], references: [id])
-  transactions Transaction[]
-  budgets      Budget[]
-}
-
-model Budget {
-  id          String   @id @default(auto())
-  userId      String
-  categoryId  String
-  limitAmount Float
-  month       DateTime
-  user        User     @relation(fields: [userId], references: [id])
-  category    Category @relation(fields: [categoryId], references: [id])
-}
-```
-
----
-
-## 🔐 Authentication Flow
-
-1. User registers or logs in via NextAuth.js
-2. Session stored as a secure HTTP-only cookie
-3. Middleware (`middleware.ts`) checks session on all `/dashboard` routes
-4. Unauthenticated requests redirect to `/login`
 
 ---
 
 ## 🔄 Data Flow
 
 ```
-UI action (e.g. add transaction)
-  → Custom hook (useTransactions)
-    → Service layer (transactionService.ts)
-      → Next.js API route (/api/transactions)
-        → PostgreSQL
-          → State update / revalidation → UI refresh
+UI Component
+  → Service layer (Supabase calls)
+    → Supabase PostgreSQL
+      → RLS (row-level security)
+        → UI refresh
 ```
 
 ---
 
-## 🐳 Docker Setup
+## 🔐 Authentication Flow
 
-Docker is a first-class concern in this project — not an afterthought.
-
-**Development with Docker Compose:**
-
-```bash
-docker compose up --build
-```
-
-The `docker-compose.yml` spins up:
-
-- `app` — Next.js dev server
-- `db` — PostgreSQL instance
-- `adminer` (optional) — database UI for local inspection
-
-**Environment variables** are loaded from `.env.local` (never committed). See
-`.env.example` for required keys.
+1. User logs in via Supabase Auth
+2. Session stored in secure cookies
+3. Protected layout checks session on server
+4. Unauthorized users redirected to `/login`
+5. RLS ensures users only access their own data
 
 ---
 
@@ -203,73 +118,34 @@ The `docker-compose.yml` spins up:
 
 ### Phase 1 — Setup
 
-- [✔️] Initialize Next.js 14 project with Yarn
-- [✔️] Configure TypeScript and Tailwind CSS
-- [✔️] Set up Docker + Docker Compose
-- [✔️] Configure PostgreSQL
-- [✔️] Initialize Git repository
+- [:heacy_check_mark:] Initialize Next.js 14 project
+- [:heacy_check_mark:] Configure TypeScript and Tailwind
+- [:heacy_check_mark:] Setup Supabase project
+- [:heacy_check_mark:] Configure Docker (optional local DB)
 
 ### Phase 2 — Authentication
 
-- [ ] Integrate Supabase Auth
-- [ ] Build login and register pages
-- [ ] Configure OAuth providers (Google/GitHub/etc.)
-- [ ] Add middleware for route protection
-- [ ] Persist and validate user session
-- [ ] Connect transactions.user_id
-- [ ] Configure RLS policies
+- [:heavy_check_mark:] Supabase Auth integration
+- [:heavy_check_mark:] Login & register pages
+- [:heavy_check_mark:] Protected routes (layout-based)
+- [:heavy_check_mark:] Session handling
+- [:heavy_check_mark:] RLS policies
 
 ### Phase 3 — Core Features
 
-- [ ] Transaction CRUD (API routes + UI)
+- [ ] Transaction CRUD
 - [ ] Category management
-- [ ] Budget system with per-category limits
+- [ ] Link transactions → categories
 
 ### Phase 4 — Dashboard & Analytics
 
-- [ ] Dashboard overview layout
-- [ ] Income vs. expenses chart (Recharts)
-- [ ] Category breakdown chart
-- [ ] Monthly trend chart
+- [ ] Overview dashboard
+- [ ] Income vs. expense charts
+- [ ] Category breakdown
+- [ ] Monthly trends
 
-### Phase 5 — UI/UX Polish
+### Phase 5 — UI Polish
 
-- [ ] Responsive layout (mobile / tablet / desktop)
-- [ ] Loading and error states
+- [ ] Responsive layout
+- [ ] Loading states
 - [ ] Empty states
-- [ ] Accessibility pass
-
-### Phase 6 — Optimization
-
-- [ ] API caching and revalidation
-- [ ] Code splitting
-- [ ] Service and hook refactoring
-
-### Phase 7 — Deployment
-
-- [ ] Deploy frontend to Vercel
-- [ ] Deploy database to Supabase
-- [ ] Configure environment variables
-- [ ] Final smoke testing
-
----
-
-## 📌 Learning Goals
-
-This project demonstrates practical competence in:
-
-- Next.js App Router architecture and routing
-- Authentication flows with session management
-- Full CRUD with a relational database via Prisma
-- Server/client data patterns in Next.js
-- REST API design and service layering
-- Containerized development with Docker
-- Production-ready project structure and TypeScript throughout
-
----
-
-## 🧠 Design Philosophy
-
-> A finished simple system beats a complex unfinished one.
-
-Priorities: **clarity**, **consistency**, **completion**.
