@@ -1,10 +1,10 @@
-import supabase from '@/lib/supabase/supabase';
+import supabase from '@/services/supabase';
 import type { CreateTransactionInput, Transaction } from '@/types/transaction';
 
 const getTransactions = async (): Promise<Transaction[]> => {
   const { data } = await supabase.from('transactions').select('*');
 
-  return data ?? [];
+  return data as Transaction[];
 };
 
 const createTransaction = async (

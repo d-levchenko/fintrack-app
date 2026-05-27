@@ -6,7 +6,7 @@ const middleware = async (request: NextRequest) => {
     request,
   });
 
-  const supabase = createServerClient(
+  createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
     {
@@ -22,8 +22,6 @@ const middleware = async (request: NextRequest) => {
       },
     },
   );
-
-  await supabase.auth.getUser();
 
   return response;
 };
