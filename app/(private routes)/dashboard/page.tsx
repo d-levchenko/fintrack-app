@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+import createClient from '@/lib/supabase/server';
 
 const DashboardPage = async () => {
   const supabase = await createClient();

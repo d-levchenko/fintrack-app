@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import supabase from '@/lib/supabase/supabase';
+import createClient from '@/lib/supabase/client';
 import { toast, ToastContainer } from 'react-toast';
 import Link from 'next/link';
 
@@ -15,6 +15,8 @@ const SignInPage = () => {
   const handleSubmitLogin = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const supabase = createClient();
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -25,6 +27,13 @@ const SignInPage = () => {
       return;
     }
 
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    console.log(session);
+
+    router.refresh();
     router.push('/dashboard');
   };
 

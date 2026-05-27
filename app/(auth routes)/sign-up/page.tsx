@@ -10,7 +10,9 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignup = async () => {
+  const handleSignup = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -19,6 +21,8 @@ const SignupPage = () => {
     if (error) {
       toast.error(error.message);
     }
+
+    e.target.reset();
   };
 
   const handleSetEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,15 +35,17 @@ const SignupPage = () => {
 
   return (
     <div>
-      <input placeholder="email" onChange={handleSetEmail} />
+      <form onSubmit={handleSignup}>
+        <input placeholder="email" onChange={handleSetEmail} />
 
-      <input
-        type="password"
-        placeholder="password"
-        onChange={handleSetPassword}
-      />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={handleSetPassword}
+        />
 
-      <button onClick={handleSignup}>Sign Up</button>
+        <button type="submit">Sign Up</button>
+      </form>
 
       <ToastContainer />
     </div>

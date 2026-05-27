@@ -3,12 +3,7 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  return (
-    <html>
-      <head />
-      <body>{children}</body>
-    </html>
-  );
+  return <>{children}</>;
 };
 
 export default DashboardLayout;
