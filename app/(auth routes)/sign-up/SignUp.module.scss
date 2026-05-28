@@ -1,0 +1,22 @@
+@use '@/styles/auth';
+
+.container {
+  @extend .authWrapper;
+  flex-direction: column;
+}
+
+.card {
+  @extend .authCard;
+}
+
+.form {
+  @extend .form;
+}
+
+.input {
+  @extend .input;
+}
+
+.button {
+  @extend .button;
+}

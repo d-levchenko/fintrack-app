@@ -6,6 +6,8 @@ import createClient from '@/lib/supabase/client';
 import { toast, ToastContainer } from 'react-toast';
 import Link from 'next/link';
 
+import css from './SignIn.module.scss';
+
 const SignInPage = () => {
   const router = useRouter();
 
@@ -48,32 +50,43 @@ const SignInPage = () => {
   };
 
   return (
-    <>
-      <h1>Sign In</h1>
+    <div className={css.container}>
+      <h1 className={css.title}>Sign In</h1>
 
-      <form onSubmit={handleSubmitLogin}>
+      <form className={css.form} onSubmit={handleSubmitLogin}>
         <input
+          className={css.input}
           placeholder="email"
           value={email}
           onChange={handleEmailInputChange}
         />
 
         <input
+          className={css.input}
           type="password"
           placeholder="password"
           value={password}
           onChange={handlePasswordInputChange}
         />
 
-        <button type="submit">Login</button>
+        <button className={css.button} type="submit">
+          Login
+        </button>
       </form>
 
-      <p>
-        Don&apos;t have an account? <Link href="/sign-up">Sign Up</Link>
+      <p className={css.linkText}>
+        Don&apos;t have an account?{' '}
+        <Link className={css.link} href="/sign-up">
+          Sign Up
+        </Link>
       </p>
 
+      <Link className={css.link} href="/">
+        Main Page
+      </Link>
+
       <ToastContainer />
-    </>
+    </div>
   );
 };
 

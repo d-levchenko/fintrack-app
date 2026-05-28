@@ -1,0 +1,36 @@
+@use '@/styles/auth';
+
+.container {
+  @extend .authWrapper;
+  flex-direction: column;
+}
+
+.card {
+  @extend .authCard;
+}
+
+.title {
+  @extend .title;
+}
+
+.form {
+  @extend .form;
+}
+
+.input {
+  @extend .input;
+}
+
+.button {
+  @extend .button;
+}
+
+.link {
+  @extend .link;
+}
+
+.linkText {
+  @extend .linkText;
+  color: var(--text);
+  margin-top: 20px;
+}
