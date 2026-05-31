@@ -7,4 +7,23 @@ const getCategories = async (): Promise<Category[]> => {
   return (data ?? []) as Category[];
 };
 
-export default getCategories;
+const createCategory = async (category: Category) => {
+  await supabase.from('categories').insert(category);
+};
+
+const deleteCategory = async (id: string) => {
+  await supabase.from('categories').delete().eq('id', id);
+};
+
+const updateCategory = async (category: Category) => {
+  await supabase.from('categories').update(category).eq('id', category.id);
+};
+
+const categoriesService = {
+  getCategories,
+  createCategory,
+  deleteCategory,
+  updateCategory,
+};
+
+export default categoriesService;

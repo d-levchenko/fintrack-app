@@ -1,8 +1,8 @@
-import getCategories from '@/services/categoriesService';
+import categoriesService from '@/services/categoriesService';
 // import Link from 'next/link';
 
 const CategoriesPage = async () => {
-  const categories = await getCategories();
+  const categories = await categoriesService.getCategories();
 
   return (
     <div>
