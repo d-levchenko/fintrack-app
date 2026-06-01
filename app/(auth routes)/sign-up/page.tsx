@@ -12,20 +12,34 @@ const SignupPage = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSignup = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
 
-    if (error) {
-      toast.error(error.message);
+      if (error) {
+        throw error;
+      }
+
+      e.target.reset();
+
+      toast.success('Sign up successful');
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : 'Sign up failed, try again later.',
+      );
+    } finally {
+      setLoading(false);
     }
-
-    e.target.reset();
   };
 
   const handleSetEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +68,8 @@ const SignupPage = () => {
           onChange={handleSetPassword}
         />
 
-        <button className={css.button} type="submit">
-          Sign Up
+        <button className={css.button} type="submit" disabled={loading}>
+          {loading ? 'Singing up...' : 'Sign Up'}
         </button>
       </form>
 

@@ -11,7 +11,7 @@ const createCategory = async (category: Category) => {
   await supabase.from('categories').insert(category);
 };
 
-const deleteCategory = async (id: string) => {
+const deleteCategory = async (id: Category['id']) => {
   await supabase.from('categories').delete().eq('id', id);
 };
 

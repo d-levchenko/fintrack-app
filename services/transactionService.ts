@@ -19,7 +19,7 @@ const createTransaction = async (
   return data;
 };
 
-const deleteTransaction = async (id: string) => {
+const deleteTransaction = async (id: Transaction['id']) => {
   await supabase.from('transactions').delete().eq('id', id);
 };
 

@@ -1,7 +1,19 @@
 import Link from 'next/link';
 import css from './Home.module.scss';
+import createClient from '@/lib/supabase/server';
+import { redirect } from 'next/navigation';
 
-const Home = () => {
+const Home = async () => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect('/dashboard');
+  }
+
   return (
     <div className={css.container}>
       <h1 className={css.title}>Welcome to Personal Finance Dashboard</h1>

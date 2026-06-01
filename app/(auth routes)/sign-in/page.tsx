@@ -9,34 +9,39 @@ import Link from 'next/link';
 import css from './SignIn.module.scss';
 
 const SignInPage = () => {
+  const supabase = createClient();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmitLogin = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
-    const supabase = createClient();
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+      if (error) {
+        throw error;
+      }
 
-    if (error) {
-      toast.error(error.message);
-      return;
+      toast.success('Login successful');
+      router.refresh();
+      router.push('/dashboard');
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : 'Login failed, try again later.',
+      );
+    } finally {
+      setLoading(false);
     }
-
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    console.log(session);
-
-    router.refresh();
-    router.push('/dashboard');
   };
 
   const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +61,8 @@ const SignInPage = () => {
       <form className={css.form} onSubmit={handleSubmitLogin}>
         <input
           className={css.input}
-          placeholder="email"
+          placeholder="Email"
+          type="email"
           value={email}
           onChange={handleEmailInputChange}
         />
@@ -69,8 +75,8 @@ const SignInPage = () => {
           onChange={handlePasswordInputChange}
         />
 
-        <button className={css.button} type="submit">
-          Login
+        <button className={css.button} type="submit" disabled={loading}>
+          {loading ? 'Singing in...' : 'Sign In'}
         </button>
       </form>
 
