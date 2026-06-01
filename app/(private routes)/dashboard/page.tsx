@@ -1,13 +1,28 @@
-import LogoutButton from '@/components/ui/LogoutButton/LogoutButton';
+import { Metadata } from 'next';
 
-const DashboardPage = async () => {
-  return (
-    <div>
-      <h1>Dashboard</h1>
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Personal Finance Dashboard',
 
-      <LogoutButton />
-    </div>
-  );
+  openGraph: {
+    title: 'Dashboard',
+    description: 'Personal Finance Dashboard',
+
+    images: [
+      {
+        url: '/og-image.png',
+        width: 800,
+        height: 600,
+        alt: 'Dashboard',
+      },
+    ],
+
+    siteName: 'Personal Finance Dashboard',
+  },
+};
+
+const DashboardPage = () => {
+  return <h1>Dashboard</h1>;
 };
 
 export default DashboardPage;

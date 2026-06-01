@@ -1,7 +1,12 @@
 import { redirect } from 'next/navigation';
 import createClient from '@/lib/supabase/server';
+import Header from '@/components/layout/Header/Header';
 
-const ProtectedLayout = async ({ children }: { children: React.ReactNode }) => {
+interface ProtectedLayoutProps {
+  children: React.ReactNode;
+}
+
+const ProtectedLayout = async ({ children }: ProtectedLayoutProps) => {
   const supabase = await createClient();
 
   const {
@@ -12,7 +17,12 @@ const ProtectedLayout = async ({ children }: { children: React.ReactNode }) => {
     redirect('/sign-in');
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 };
 
 export default ProtectedLayout;
