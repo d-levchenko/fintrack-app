@@ -10,12 +10,13 @@ const elmsSans = Elms_Sans({
   weight: ['400', '500', '600', '700'],
   variable: '--font-elms-sans',
   display: 'swap',
+  fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html>
-      <head className={`${elmsSans.variable} font-sans`} />
+    <html lang="en" className={elmsSans.variable}>
+      <head />
       <body>
         <div className="containerGlobal">{children}</div>
       </body>

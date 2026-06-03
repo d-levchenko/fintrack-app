@@ -1,13 +1,17 @@
 import { Budget, CreateBudgetInput } from '@/types/budget';
-import supabase from '@/services/supabase';
+import createClient from '@/lib/supabase/server';
 
 const getBudget = async (): Promise<Budget[]> => {
+  const supabase = await createClient();
+
   const { data } = await supabase.from('budgets').select('*');
 
   return data as Budget[];
 };
 
 const getBudgetById = async (id: Budget['id']): Promise<Budget> => {
+  const supabase = await createClient();
+
   const { data } = await supabase
     .from('budgets')
     .select('*')
@@ -18,10 +22,14 @@ const getBudgetById = async (id: Budget['id']): Promise<Budget> => {
 };
 
 const createBudget = async (budget: CreateBudgetInput) => {
+  const supabase = await createClient();
+
   await supabase.from('budgets').insert(budget);
 };
 
 const updateBudget = async (budget: Budget) => {
+  const supabase = await createClient();
+
   await supabase
     .from('budgets')
     .update({
@@ -33,6 +41,8 @@ const updateBudget = async (budget: Budget) => {
 };
 
 const deleteBudget = async (id: Budget['id']) => {
+  const supabase = await createClient();
+
   await supabase.from('budgets').delete().eq('id', id);
 };
 
