@@ -30,7 +30,6 @@ const DashboardPage = () => {
 
       <CategoriesPage />
 
-      <p>Last transactions</p>
       <TransactionPage />
     </>
   );
