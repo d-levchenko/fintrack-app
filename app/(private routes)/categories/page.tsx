@@ -1,26 +1,18 @@
-import categoriesService from '@/services/categoriesService';
-import Link from 'next/link';
+import CategoryList from '@/components/layout/CategoryList/CategoryList';
+import CategoryPage from '@/components/ui/CategoryContent/CategoryContent';
 
 import css from './Categories.module.scss';
 
-const CategoriesPage = async () => {
-  const categories = await categoriesService.getCategories();
-
+const Categories = () => {
   return (
     <section className={css.section}>
       <div className={css.container}>
-        <h1>Categories</h1>
+        <CategoryPage />
 
-        <ul className={css.list}>
-          {categories.map(category => (
-            <li key={category.id}>
-              <Link href={`/categories/${category.id}`}>{category.name}</Link>
-            </li>
-          ))}
-        </ul>
+        <CategoryList />
       </div>
     </section>
   );
 };
 
-export default CategoriesPage;
+export default Categories;

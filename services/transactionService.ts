@@ -6,7 +6,7 @@ const getTransactions = async (): Promise<Transaction[]> => {
 
   const { data } = await supabase.from('transactions').select('*');
 
-  return data as Transaction[];
+  return (data ?? []) as Transaction[];
 };
 
 const createTransaction = async (

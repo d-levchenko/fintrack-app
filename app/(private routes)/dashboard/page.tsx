@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
-import CategoriesPage from '../categories/page';
 import TransactionPage from '../transactions/page';
+import DashboardText from '@/components/ui/DashboardText/DashboardText';
+import Categories from '../categories/page';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -26,9 +27,10 @@ export const metadata: Metadata = {
 const DashboardPage = () => {
   return (
     <>
-      <h1>Dashboard</h1>
+      <DashboardText />
 
-      <CategoriesPage />
+      {/* change on components later */}
+      <Categories />
 
       <TransactionPage />
     </>

@@ -1,6 +1,5 @@
-// import supabase from '@/services/supabase';
 import createClient from '@/lib/supabase/server';
-import type { Category } from '@/types/categories';
+import type { Category, CreateCategoryInput } from '@/types/categories';
 
 const getCategories = async (): Promise<Category[]> => {
   const supabase = await createClient();
@@ -22,7 +21,7 @@ const getCategoryById = async (id: string): Promise<Category | null> => {
   return data;
 };
 
-const createCategory = async (category: Category) => {
+const createCategory = async (category: CreateCategoryInput) => {
   const supabase = await createClient();
 
   await supabase.from('categories').insert(category);
