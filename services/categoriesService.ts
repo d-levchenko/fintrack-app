@@ -1,5 +1,5 @@
 import createClient from '@/lib/supabase/server';
-import type { Category, CreateCategoryInput } from '@/types/categories';
+import type { Category } from '@/types/categories';
 
 const getCategories = async () => {
   const supabase = await createClient();
@@ -27,13 +27,7 @@ const getCategoryById = async (id: string): Promise<Category | null> => {
     .eq('id', id)
     .single();
 
-  return data;
-};
-
-const createCategory = async (category: CreateCategoryInput) => {
-  const supabase = await createClient();
-
-  await supabase.from('categories').insert(category);
+  return data as Category | null;
 };
 
 const deleteCategory = async (id: Category['id']) => {
@@ -51,7 +45,6 @@ const updateCategory = async (category: Category) => {
 const categoriesService = {
   getCategories,
   getCategoryById,
-  createCategory,
   deleteCategory,
   updateCategory,
 };

@@ -5,4 +5,7 @@ export type Category = {
   color: string;
 };
 
-export type CreateCategoryInput = Omit<Category, 'id'>;
+export type CreateCategoryInput = {
+  name: string;
+  color: string;
+};
