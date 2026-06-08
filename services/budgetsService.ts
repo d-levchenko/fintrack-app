@@ -4,9 +4,18 @@ import createClient from '@/lib/supabase/server';
 const getBudget = async (): Promise<Budget[]> => {
   const supabase = await createClient();
 
-  const { data } = await supabase.from('budgets').select('*');
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return data as Budget[];
+  if (!user) return [];
+
+  const { data } = await supabase
+    .from('budgets')
+    .select('*')
+    .eq('user_id', user.id);
+
+  return (data ?? []) as Budget[];
 };
 
 const getBudgetById = async (id: Budget['id']): Promise<Budget> => {

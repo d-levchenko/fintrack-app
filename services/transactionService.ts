@@ -4,7 +4,16 @@ import type { CreateTransactionInput, Transaction } from '@/types/transaction';
 const getTransactions = async (): Promise<Transaction[]> => {
   const supabase = await createClient();
 
-  const { data } = await supabase.from('transactions').select('*');
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return [];
+
+  const { data } = await supabase
+    .from('transactions')
+    .select('*')
+    .eq('user_id', user.id);
 
   return (data ?? []) as Transaction[];
 };

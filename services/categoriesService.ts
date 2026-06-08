@@ -1,10 +1,19 @@
 import createClient from '@/lib/supabase/server';
 import type { Category, CreateCategoryInput } from '@/types/categories';
 
-const getCategories = async (): Promise<Category[]> => {
+const getCategories = async () => {
   const supabase = await createClient();
 
-  const { data } = await supabase.from('categories').select('*');
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return [];
+
+  const { data } = await supabase
+    .from('categories')
+    .select('*')
+    .eq('user_id', user.id);
 
   return (data ?? []) as Category[];
 };
