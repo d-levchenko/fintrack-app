@@ -1,6 +1,6 @@
 # 💰 Personal Finance Dashboard
 
-A full-stack personal finance tracking application built with **Next.js 14**,
+A full-stack personal finance tracking application built with **Next.js 16**,
 **TypeScript**, and **Supabase**. Users can track income and expenses, manage
 categories, and visualize financial data through an analytics dashboard.
 
