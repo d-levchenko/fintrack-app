@@ -36,3 +36,14 @@
 .button:hover {
   opacity: 0.85;
 }
+
+.loading {
+  font-size: 18px;
+  margin-top: 16px;
+  text-align: center;
+  color: var(--primary);
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+}
