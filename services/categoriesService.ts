@@ -1,7 +1,7 @@
 import createClient from '@/lib/supabase/server';
 import type { Category } from '@/types/categories';
 
-const getCategories = async () => {
+const getCategories = async (): Promise<Category[]> => {
   const supabase = await createClient();
 
   const {
@@ -30,23 +30,9 @@ const getCategoryById = async (id: string): Promise<Category | null> => {
   return data as Category | null;
 };
 
-const deleteCategory = async (id: Category['id']) => {
-  const supabase = await createClient();
-
-  await supabase.from('categories').delete().eq('id', id);
-};
-
-const updateCategory = async (category: Category) => {
-  const supabase = await createClient();
-
-  await supabase.from('categories').update(category).eq('id', category.id);
-};
-
 const categoriesService = {
   getCategories,
   getCategoryById,
-  deleteCategory,
-  updateCategory,
 };
 
 export default categoriesService;

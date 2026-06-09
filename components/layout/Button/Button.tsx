@@ -1,15 +1,14 @@
 'use client';
 
-import css from './Button.module.scss';
-
 interface ButtonProps {
   text: string;
   onClick: () => void;
+  style?: string;
 }
 
-const Button = ({ text, onClick }: ButtonProps) => {
+const Button = ({ text, onClick, style }: ButtonProps) => {
   return (
-    <button className={css.button} onClick={onClick}>
+    <button className={style} onClick={onClick}>
       {text}
     </button>
   );

@@ -24,6 +24,11 @@ button {
   cursor: pointer;
 }
 
+ol,
+ul {
+  list-style: none;
+}
+
 a:hover {
   opacity: 0.8;
 }

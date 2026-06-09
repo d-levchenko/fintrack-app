@@ -1,3 +1,4 @@
+import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import '@/styles/globals.scss';
 import { Elms_Sans } from 'next/font/google';
 
@@ -16,9 +17,10 @@ const elmsSans = Elms_Sans({
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en" className={elmsSans.variable}>
-      <head />
       <body>
-        <div className="containerGlobal">{children}</div>
+        <TanStackProvider>
+          <div className="containerGlobal">{children}</div>
+        </TanStackProvider>
       </body>
     </html>
   );

@@ -2,4 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.button {
+  border: none;
+  width: 100px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: var(--button-text);
+
+  &:hover {
+    opacity: 0.9;
+  }
 }

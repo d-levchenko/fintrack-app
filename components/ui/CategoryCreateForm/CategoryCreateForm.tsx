@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 
-import createCategoryAction from '@/services/categoriesClientService';
+import { createCategoryAction } from '@/services/actions/categoriesClientService';
 
 interface CategoryFormProps {
   onSuccess: () => void;
 }
 
-const CategoryForm = ({ onSuccess }: CategoryFormProps) => {
+const CategoryCreateForm = ({ onSuccess }: CategoryFormProps) => {
   const [name, setName] = useState('');
   const [color, setColor] = useState('#000000');
 
@@ -30,6 +30,7 @@ const CategoryForm = ({ onSuccess }: CategoryFormProps) => {
     <form action={handleAction}>
       <input
         name="name"
+        type="text"
         placeholder="Category name"
         value={name}
         onChange={handleChangeName}
@@ -47,4 +48,4 @@ const CategoryForm = ({ onSuccess }: CategoryFormProps) => {
   );
 };
 
-export default CategoryForm;
+export default CategoryCreateForm;

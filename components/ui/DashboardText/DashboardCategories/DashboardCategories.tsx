@@ -15,13 +15,13 @@ const DashboardCategories = async () => {
           <ul className={css.list}>
             {categories.slice(0, 5).map(category => (
               <li key={category.id}>
-                <Link href={`/categories/${category.id}`}>
+                <p className={css.item}>
                   <span
                     className={css.colorDot}
                     style={{ backgroundColor: category.color }}
                   />{' '}
                   {category.name}
-                </Link>
+                </p>
               </li>
             ))}
           </ul>

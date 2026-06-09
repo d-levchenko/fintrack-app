@@ -2,7 +2,7 @@
 
 import Button from '@/components/layout/Button/Button';
 import ModalWindow from '@/components/ui/ModalWindow/ModalWindow';
-import CategoryForm from '../CategoryForm/CategoryForm';
+import CategoryCreateForm from '../CategoryCreateForm/CategoryCreateForm';
 
 import css from './CategoryContent.module.scss';
 
@@ -24,10 +24,14 @@ const CategoryContent = () => {
       <div className={css.categoryHeader}>
         <h2>Categories</h2>
 
-        <Button text="Add Category" onClick={handleOpenModalWindow} />
+        <Button
+          text="Add Category"
+          onClick={handleOpenModalWindow}
+          style={css.button}
+        />
 
         <ModalWindow isOpen={isOpen} onClose={handleCloseModalWindow}>
-          <CategoryForm onSuccess={handleCloseModalWindow} />
+          <CategoryCreateForm onSuccess={handleCloseModalWindow} />
         </ModalWindow>
       </div>
     </>
