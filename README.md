@@ -118,7 +118,7 @@ UI Component
 
 ### Phase 1 — Setup
 
-- [✔️] Initialize Next.js 14 project
+- [✔️] Initialize Next.js 16 project
 - [✔️] Configure TypeScript and Tailwind
 - [✔️] Setup Supabase project
 - [✔️] Configure Docker (optional local DB)
