@@ -42,13 +42,13 @@ categories, and visualize financial data through an analytics dashboard.
 
 | Layer           | Technology                |
 | --------------- | ------------------------- |
-| Framework       | Next.js 14 (App Router)   |
+| Framework       | Next.js 16 (App Router)   |
 | Language        | TypeScript                |
 | Styling         | Tailwind CSS              |
 | Backend         | Supabase                  |
 | Database        | PostgreSQL (via Supabase) |
 | Charts          | Recharts                  |
-| Package Manager | Yarn                      |
+| Package Manager | pnpm                      |
 | Deployment      | Vercel                    |
 
 ---
